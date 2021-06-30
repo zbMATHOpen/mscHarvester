@@ -1,5 +1,6 @@
 # run pip install sickle
 from sickle import Sickle
+from msch.zb_preview_record import ZbPreviewRecord
 import time
 
 MAX_RECORDS = 10
@@ -17,9 +18,11 @@ def log(m):
 def run():
     t0 = time.time()
     s = Sickle(URL, retry_status_codes=[429], max_retries=1000)
+    s.class_mapping['ListRecord'] = ZbPreviewRecord
     r = s.ListRecords(metadataPrefix=METADATA_PREFIX)
     i = 0
     for row in r:
+        print(row)
         if i > MAX_RECORDS:
             return
         else:
