@@ -2,4 +2,5 @@ from sickle.models import Record
 
 
 class ZbPreviewRecord(Record):
-    pass
+    def get_de(self) -> int:
+        return self.get_metadata()['document_id'][0]
