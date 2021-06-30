@@ -6,7 +6,7 @@ from msch.zb_preview_record import ZbPreviewRecord
 import time
 import csv
 
-MAX_RECORDS = 10
+MAX_RECORDS = 10000
 
 METADATA_PREFIX = 'oai_zb_preview'
 # METADATA_PREFIX = 'oai_dc'
@@ -28,8 +28,7 @@ def run():
     i = 0
     w: csv.DictWriter
     with open('out.csv', 'w') as csvfile:
-        fieldnames = ['de']
-        w = csv.DictWriter(csvfile, fieldnames)
+        w = csv.DictWriter(csvfile, ZbPreviewRecord.fieldnames)
         w.writeheader()
         for row in r:
             row.writerow(w)
