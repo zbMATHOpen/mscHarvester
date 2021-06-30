@@ -18,12 +18,6 @@ def log(m):
     print(m)
 
 
-def writerow(row, writer):
-    writer.writerow({
-        'de': row.get_de()
-    })
-
-
 def run():
     t0 = time.time()
     s = Sickle(URL, retry_status_codes=[429], max_retries=1000)
@@ -34,11 +28,11 @@ def run():
     i = 0
     w: csv.DictWriter
     with open('out.csv', 'w') as csvfile:
-        fielnames = ['de']
-        w = csv.DictWriter(csvfile, fielnames)
+        fieldnames = ['de']
+        w = csv.DictWriter(csvfile, fieldnames)
         w.writeheader()
         for row in r:
-            writerow(row, w)
+            row.writerow(w)
             if i > MAX_RECORDS:
                 return
             else:
