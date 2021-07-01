@@ -2,16 +2,17 @@
 from typing import Iterator
 
 from sickle import Sickle
+
+from msch.client import get_client
 from msch.zb_preview_record import ZbPreviewRecord
 import time
 import csv
 
-MAX_RECORDS = 10000
+MAX_RECORDS = 1000
 
 METADATA_PREFIX = 'oai_zb_preview'
 # METADATA_PREFIX = 'oai_dc'
 
-URL = 'https://oai.zbmath.org/v1/'
 
 
 def log(m):
@@ -20,9 +21,7 @@ def log(m):
 
 def run():
     t0 = time.time()
-    s = Sickle(URL, retry_status_codes=[429], max_retries=1000)
-    s.class_mapping['GetRecord'] = ZbPreviewRecord
-    s.class_mapping['ListRecords'] = ZbPreviewRecord
+    s = get_client()
     r: Iterator[ZbPreviewRecord] = s.ListRecords(
         metadataPrefix=METADATA_PREFIX)
     i = 0
@@ -39,6 +38,9 @@ def run():
             if i % 100 == 0:
                 current_time = time.time()
                 log(f"{i / (current_time - t0)} records per second")
+
+
+
 
 
 if __name__ == '__main__':
