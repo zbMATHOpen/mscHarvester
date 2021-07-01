@@ -5,31 +5,40 @@ from sickle.models import Record
 
 class ZbPreviewRecord(Record):
     fieldnames = ['de', 'msc', 'keyword', 'title', 'text', 'refs']
+    metadata = None
+
+    def get_attrib(self, attrib):
+        if self.metadata is None:
+            self.metadata = self.get_metadata()
+        try:
+            data = self.metadata[attrib]
+            if len(data) == 1:
+                data = data[0]
+            if data == "zbMATH Open Web Interface contents unavailable due " \
+                       "to conflicting licenses.":
+                return ""
+            else:
+                return data
+        except KeyError:
+            return ""
 
     def get_de(self) -> int:
-        return self.get_metadata()['document_id'][0]
+        return self.get_attrib('document_id')
 
-    def get_msc(self):
-        return self.get_metadata()['classification']
+    def get_msc(self) -> []:
+        return self.get_attrib('classification')
 
-    def get_keywords(self):
-        try:
-            return self.get_metadata()['keyword']
-        except KeyError:
-            return ""
+    def get_keywords(self) -> []:
+        return self.get_attrib('keyword')
 
-    def get_title(self):
-        return self.get_metadata()['document_title'][0]
+    def get_title(self) -> str:
+        return self.get_attrib('document_title')
 
     def get_text(self) -> str:
-        return self.get_metadata()['review_text'][0]
+        return self.get_attrib('review_text')
 
-    def get_refs(self):
-        try:
-            refs = self.get_metadata()['ref_classification']
-            return refs
-        except KeyError:
-            return ""
+    def get_refs(self) -> []:
+        return self.get_attrib('ref_classification')
 
     def writerow(self, writer: DictWriter):
         writer.writerow({
@@ -40,5 +49,3 @@ class ZbPreviewRecord(Record):
             'text': self.get_text(),
             'refs': self.get_refs(),
         })
-
-
