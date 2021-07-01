@@ -40,12 +40,17 @@ class ZbPreviewRecord(Record):
     def get_refs(self) -> []:
         return self.get_attrib('ref_classification')
 
-    def writerow(self, writer: DictWriter):
-        writer.writerow({
+    def writerow(self, writer: DictWriter, only_complete=False):
+        fields = {
             'de': self.get_de(),
             'msc': self.get_msc(),
             'keyword': self.get_keywords(),
             'title': self.get_title(),
             'text': self.get_text(),
             'refs': self.get_refs(),
-        })
+        }
+        if only_complete:
+            for k, v in fields.items():
+                if v == "":
+                    return
+        writer.writerow(fields)

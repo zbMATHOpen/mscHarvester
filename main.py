@@ -30,7 +30,7 @@ def run():
         w = csv.DictWriter(csvfile, ZbPreviewRecord.fieldnames)
         w.writeheader()
         for row in r:
-            row.writerow(w)
+            row.writerow(w,True)
             if i > MAX_RECORDS:
                 return
             else:
