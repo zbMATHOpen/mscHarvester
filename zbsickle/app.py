@@ -1,4 +1,4 @@
-from typing import Final, Iterator
+from typing import Iterator
 
 from sickle import Sickle
 from sickle.iterator import OAIItemIterator
@@ -10,7 +10,7 @@ from zbsickle.models import ZbPreviewRecord
 class ZbPreviewSickle(Sickle):
     METADATA_PREFIX = "oai_zb_preview"
     DEFAULT_ENDPOINT = "https://zboai.formulasearchengine.com/v1"
-    DEFAULT_CLASS_MAP: Final = {
+    DEFAULT_CLASS_MAP = {
         "GetRecord": ZbPreviewRecord,
         "ListRecords": ZbPreviewRecord,
         "ListIdentifiers": Header,
@@ -18,11 +18,7 @@ class ZbPreviewSickle(Sickle):
         "ListMetadataFormats": MetadataFormat,
         "Identify": Identify,
     }
-    """Client for harvesting OAI interfaces.
-        :parent
-    """
 
-    # noinspection PyDefaultArgument
     def __init__(
         self,
         endpoint=DEFAULT_ENDPOINT,
@@ -32,10 +28,12 @@ class ZbPreviewSickle(Sickle):
         max_retries=1000,
         retry_status_codes=None,
         default_retry_after=60,
-        class_mapping=DEFAULT_CLASS_MAP,
+        class_mapping=None,
         encoding=None,
         **request_args,
     ):
+        if class_mapping is None:
+            class_mapping = self.DEFAULT_CLASS_MAP
         super().__init__(
             endpoint,
             http_method,
