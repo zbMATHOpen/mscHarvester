@@ -7,9 +7,13 @@ See [sample.csv](sample.csv) for an example.
 The meaning of the columns is the following:
 
 *de*: Internal zbMATH identifier (not to confuse with the zbl identifier)
+
 *msc*: MSC of the article
+
 *keywors*: keywords of the article
+
 *title*: title of the article
+
 *refs*: MSCs occouring in the references
 
 By default only colums are exported with all values present.
