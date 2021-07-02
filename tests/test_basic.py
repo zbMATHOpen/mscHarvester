@@ -1,10 +1,8 @@
-from msch.client import get_client
-from msch.zb_preview_record import ZbPreviewRecord
+from zbsickle.app import ZbPreviewSickle
+from zbsickle.models import ZbPreviewRecord
 
 
 def test_get_client():
-    s = get_client()
-    row: ZbPreviewRecord = s.GetRecord(identifier="oai:zbmath.org:6675366",
-                                       metadataPrefix="oai_zb_preview",
-                                       )
+    s = ZbPreviewSickle()
+    row = s.GetRecord(de=6675366)
     assert len(row.get_refs()) == 31
