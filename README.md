@@ -18,3 +18,8 @@ The meaning of the columns is the following:
 
 By default only colums are exported with all values present.
 
+### Notes on the de indentifier
+
+One can navigate to the corresponding article in the zbMATH open webinterface by prefixing the string `https://zbmath.org/?an=0` to it.
+For example for `de=1209934` navigate to https://zbmath.org/?an=01209934.
+In rare cases there are de values below 1000000, if so as manny zeros have to be prefixed so that the final number in the url has eight digits.
