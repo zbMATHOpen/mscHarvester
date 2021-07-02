@@ -27,3 +27,13 @@ To retrive the de from the zbMATH Open website a little trick is required:
 One can obtain the de this by clicking on the BibTeX button below the article.
 For this example, a BibTeX entry with key `zbMATH01209934` will be downloaded.
 The last digits after the word zbMATH, i.e., 1209934, are the DE number. 
+
+### Links and references
+
+* [zbMATH OAI-PMH Api](https://oai.zbmath.org/)
+
+* [M. Schubotz and O. Teschke, zbMATH Open: Towards standardized machine interfaces to expose bibliographic metadata. EMS Magazine 119, 50–53 (2021)](https://euromathsoc.org/magazine/2021/119/mag-12)
+
+* [M. Petrera, I. Beckenbach, D. Ehsani, F. Müller, O. Teschke, B. Gipp, and M. Schubotz, zbMATH Open: API Solutions and Research Challenges. ArXiv, abs/2106.04664 (2021)](https://arxiv.org/abs/2106.04664)
+
+* [M. Schubotz, P. Scharpf, O. Teschke, A. Kühnemund, C. Breitinger, B. Gipp, AutoMSC: Automatic Assignment of Mathematics Subject Classification Labels, Intelligent Computer Mathematics - 13thInternational Conference, CICM 2020, Bertinoro, Italy, July 26-31, 2020, Proceedings](https://arxiv.org/pdf/2005.12099.pdf)
