@@ -1,5 +1,9 @@
 # MSC harvester
 
+[![DOI](https://zenodo.org/badge/381731111.svg)](https://zenodo.org/badge/latestdoi/381731111)
+
+![python workflow](https://github.com/zbMATHOpen/mscHarvester/actions/workflows/py.yml/badge.svg)
+
 The MSC harvester obtains Open [Mathematics Subject Classification (MSC)](https://zbmath.org/classification/) data from the [zbMATH Open](https://zbmath.org) [OAI-PMH](https://www.openarchives.org/pmh/)-[API](https://en.wikipedia.org/wiki/API) using the [Sickle client](https://github.com/mloesch/sickle).
 The data is written to a csv file.
 See [sample.csv](sample.csv) for an example.
