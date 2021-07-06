@@ -10,7 +10,9 @@ def log(m):
     print(m)
 
 
-def run(max_records=10, outfile="out.csv", log_interval=1000):
+def run(
+    max_records=10, outfile="out.csv", log_interval=1000, only_complete=True
+):
     t0 = time.time()
     s = ZbPreviewSickle()
     r = s.ListRecords()
@@ -20,10 +22,10 @@ def run(max_records=10, outfile="out.csv", log_interval=1000):
         w = csv.DictWriter(csvfile, ZbPreviewRecord.fieldnames)
         w.writeheader()
         for row in r:
-            row.writerow(w, True)
+            added = row.writerow(w, only_complete)
             if i > max_records:
                 return
-            else:
+            elif added:
                 i += 1
             if i % log_interval == 0:
                 current_time = time.time()
