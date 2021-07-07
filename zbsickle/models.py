@@ -5,6 +5,15 @@ from sickle.models import Record
 
 class ZbPreviewRecord(Record):
     fieldnames = ["de", "doi", "msc", "keyword", "title", "text", "refs"]
+    _field_map = {
+        "de": "document_id",
+        "doi": "doi",
+        "msc": "classification",
+        "keyword": "keyword",
+        "title": "document_title",
+        "text": "review_text",
+        "refs": "ref_classification",
+    }
     metadata = None
 
     def get_attrib(self, attrib):
@@ -48,15 +57,9 @@ class ZbPreviewRecord(Record):
         return self.get_attrib("ref_classification")
 
     def writerow(self, writer: DictWriter, only_complete=False) -> bool:
-        fields = {
-            "de": self.get_de(),
-            "doi": self.get_doi(),
-            "msc": self.get_msc(),
-            "keyword": self.get_keywords(),
-            "title": self.get_title(),
-            "text": self.get_text(),
-            "refs": self.get_refs(),
-        }
+        fields = {}
+        for f in self.fieldnames:
+            fields[f] = self.get_attrib(self._field_map[f])
         if only_complete:
             for k, v in fields.items():
                 if v == "":
