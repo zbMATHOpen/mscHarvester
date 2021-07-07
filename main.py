@@ -11,7 +11,11 @@ def log(m):
 
 
 def run(
-    max_records=10, outfile="out.csv", log_interval=1000, only_complete=True
+    max_records=10,
+    outfile="out.csv",
+    log_interval=1000,
+    only_complete=True,
+    fieldnames=ZbPreviewRecord.fieldnames,
 ):
     t0 = time.time()
     s = ZbPreviewSickle()
@@ -19,9 +23,10 @@ def run(
     i = 0
     w: csv.DictWriter
     with open(outfile, "w") as csvfile:
-        w = csv.DictWriter(csvfile, ZbPreviewRecord.fieldnames)
+        w = csv.DictWriter(csvfile, fieldnames)
         w.writeheader()
         for row in r:
+            row.fieldnames = fieldnames
             added = row.writerow(w, only_complete)
             if i > max_records:
                 return
