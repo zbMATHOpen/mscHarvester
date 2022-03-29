@@ -9,7 +9,7 @@ from zbsickle.models import ZbPreviewRecord
 
 class ZbPreviewSickle(Sickle):
     METADATA_PREFIX = "oai_zb_preview"
-    DEFAULT_ENDPOINT = "https://zboai.formulasearchengine.com/v1"
+    DEFAULT_ENDPOINT = "https://oai.zbmath.org/v1"
     DEFAULT_CLASS_MAP = {
         "GetRecord": ZbPreviewRecord,
         "ListRecords": ZbPreviewRecord,
