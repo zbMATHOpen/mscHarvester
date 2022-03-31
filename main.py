@@ -4,6 +4,7 @@ from zbsickle.app import ZbPreviewSickle
 from zbsickle.models import ZbPreviewRecord
 import time
 import csv
+import math
 
 
 def log(m):
@@ -11,10 +12,10 @@ def log(m):
 
 
 def run(
-    max_records=10,
+    max_records=math.inf,
     outfile="out.csv",
     log_interval=1000,
-    only_complete=True,
+    only_complete=False,
     fieldnames=ZbPreviewRecord.fieldnames,
 ):
     t0 = time.time()
