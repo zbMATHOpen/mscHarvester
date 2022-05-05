@@ -13,6 +13,7 @@ class ZbPreviewRecord(Record):
         "title": "document_title",
         "text": "review_text",
         "refs": "ref_classification",
+        "zbl_id": "zbl_id",
     }
     metadata = None
 
