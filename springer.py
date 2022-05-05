@@ -11,7 +11,8 @@ def row_filter(fields):
             return False
         if k == "zbl_id" and not full_id.match(v):
             return False
-    fields['msc']=fields['msc'][0]
+    if isinstance(fields['msc'], list):
+        fields['msc'] = fields['msc'][0]
     return True
 
 
