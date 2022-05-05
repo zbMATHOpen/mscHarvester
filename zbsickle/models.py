@@ -56,13 +56,12 @@ class ZbPreviewRecord(Record):
     def get_refs(self) -> []:
         return self.get_attrib("ref_classification")
 
-    def writerow(self, writer: DictWriter, only_complete=False) -> bool:
+    def writerow(self, writer: DictWriter, row_filter=lambda x: True) -> bool:
         fields = {}
         for f in self.fieldnames:
             fields[f] = self.get_attrib(self._field_map[f])
-        if only_complete:
-            for k, v in fields.items():
-                if v == "":
-                    return False
-        writer.writerow(fields)
-        return True
+        if row_filter(fields):
+            writer.writerow(fields)
+            return True
+        return False
+

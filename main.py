@@ -15,7 +15,7 @@ def run(
     max_records=math.inf,
     outfile="out.csv",
     log_interval=1000,
-    only_complete=False,
+    row_filter=lambda x: True,
     fieldnames=ZbPreviewRecord.fieldnames,
 ):
     t0 = time.time()
@@ -28,7 +28,7 @@ def run(
         w.writeheader()
         for row in r:
             row.fieldnames = fieldnames
-            added = row.writerow(w, only_complete)
+            added = row.writerow(w, row_filter)
             if i > max_records:
                 return
             elif added:
