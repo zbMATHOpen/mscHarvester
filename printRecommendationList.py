@@ -10,10 +10,10 @@ def get_record(de: int):
 
 
 with open('recommendation.csv') as csvfile:
-    r = csv.DictReader(csvfile)
+    records = csv.DictReader(csvfile)
     lastSeed = ''
     position = 0
-    for row in r:
+    for row in records:
         seed = row.get('seed')
         if lastSeed != seed:
             position = 0
