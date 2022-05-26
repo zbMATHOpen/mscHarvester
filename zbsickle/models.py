@@ -57,6 +57,9 @@ class ZbPreviewRecord(Record):
     def get_refs(self) -> []:
         return self.get_attrib("ref_classification")
 
+    def get_author(self):
+        return self.get_attrib("author")
+
     def writerow(self, writer: DictWriter, row_filter=lambda x: True) -> bool:
         fields = {}
         for f in self.fieldnames:
