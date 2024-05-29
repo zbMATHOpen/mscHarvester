@@ -1,2 +1,4 @@
 app:
   build: .
+  volumes:
+    - "$PWD/out.csv:/usr/src/app/out.csv"
