@@ -1,4 +1,5 @@
-app:
-  build: .
-  volumes:
-    - "$PWD/out.csv:/usr/src/app/out.csv"
+services:
+  app:
+    build: .
+    volumes:
+      - "$PWD/out.csv:/usr/src/app/out.csv"
