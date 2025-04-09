@@ -17,7 +17,8 @@ def run(
     log_interval=1000,
     row_filter=lambda x: True,
     fieldnames=ZbPreviewRecord.fieldnames,
-    endpoint=ZbPreviewSickle.DEFAULT_ENDPOINT
+    endpoint=ZbPreviewSickle.DEFAULT_ENDPOINT,
+    field_map=ZbPreviewRecord.field_map,
 ):
     t0 = time.time()
     s = ZbPreviewSickle(endpoint=endpoint)
@@ -29,6 +30,7 @@ def run(
         w.writeheader()
         for row in r:
             row.fieldnames = fieldnames
+            row.field_map = field_map
             added = row.writerow(w, row_filter)
             if i > max_records:
                 return

@@ -5,7 +5,7 @@ from sickle.models import Record
 
 class ZbPreviewRecord(Record):
     fieldnames = ["de", "doi", "msc", "keyword", "title", "text", "refs"]
-    _field_map = {
+    field_map = {
         "de": "document_id",
         "doi": "doi",
         "msc": "classification",
@@ -63,7 +63,7 @@ class ZbPreviewRecord(Record):
     def writerow(self, writer: DictWriter, row_filter=lambda x: True) -> bool:
         fields = {}
         for f in self.fieldnames:
-            fields[f] = self.get_attrib(self._field_map[f])
+            fields[f] = self.get_attrib(self.field_map[f])
         if row_filter(fields):
             writer.writerow(fields)
             return True
