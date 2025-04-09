@@ -18,6 +18,7 @@ def row_filter(fields):
             return False
         if k=="arXiv_id" and not arxiv.search(v):
             return False
+    fields['abstract'] = fields['abstract'].lstrip('Summary: ')
     return True
 
 
