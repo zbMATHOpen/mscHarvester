@@ -1,5 +1,4 @@
 from zbsickle.app import ZbPreviewSickle
-from zbsickle.models import ZbPreviewRecord
 
 
 def test_get_client():
