@@ -11,6 +11,8 @@ arxiv = re.compile(r'https?://arxiv\.org')
 
 
 def row_filter(fields):
+    if fields['abstract'] is None:
+        return False
     if len(fields['abstract']) < 10:
         return False
     link = fields['arXiv_id']
