@@ -31,7 +31,11 @@ def run(
         for row in r:
             row.fieldnames = fieldnames
             row.field_map = field_map
-            added = row.writerow(w, row_filter)
+            try:
+                added = row.writerow(w, row_filter)
+            except Exception as e:
+                log(f"Error: {e} for Record {row}")
+                added = False
             if i > max_records:
                 return
             elif added:
