@@ -1,40 +1,26 @@
-from zbsickle.app import ZbPreviewSickle
-from zbsickle.models import ZbPreviewRecord
-import time
-import csv
-import math
+from main import run
+import re
+
+fieldnames = ["arXiv_id", "abstract"]
+full_id = re.compile(r'\d+\.\d')
 
 
-def log(m):
-    print(m)
+def row_filter(fields):
+    for k, v in fields.items():
+        if v == "":
+            return False
+        if k == "zbl_id" and not full_id.match(v):
+            return False
+    if isinstance(fields['msc'], list):
+        fields['msc'] = fields['msc'][0]
+    return True
 
 
-def run(
+run(
     max_records=10,
     outfile="arxiv.csv",
-    log_interval=10,
-    row_filter=lambda x: True,
-    fieldnames=ZbPreviewRecord.fieldnames,
-):
-    t0 = time.time()
-    s = ZbPreviewSickle(endpoint='https://oai.portal.mardi4nfdi.de/oai/OAIHandler')
-    r = s.ListRecords()
-    i = 0
-    w: csv.DictWriter
-    with open(outfile, "w") as csvfile:
-        w = csv.DictWriter(csvfile, fieldnames)
-        w.writeheader()
-        for row in r:
-            row.fieldnames = fieldnames
-            added = row.writerow(w, row_filter)
-            if i > max_records:
-                return
-            elif added:
-                i += 1
-            if i % log_interval == 0:
-                current_time = time.time()
-                log(f"{i / (current_time - t0)} records per second")
-
-
-if __name__ == "__main__":
-    run()
+    log_interval=1,
+    # row_filter=row_filter,
+    # fieldnames=fieldnames,
+    endpoint='https://oai.portal.mardi4nfdi.de/oai/OAIHandler'
+)
