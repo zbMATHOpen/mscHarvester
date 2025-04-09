@@ -14,6 +14,8 @@ def row_filter(fields):
     for k, v in fields.items():
         if v is None: # Remove articles without abstract
             return False
+        if k == "abstract" and len(v) < 10:
+            return False
         if k=="arXiv_id" and not arxiv.search(v):
             return False
     return True
