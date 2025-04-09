@@ -36,7 +36,7 @@ def run(
                 return
             elif added:
                 i += 1
-            if i % log_interval == 0:
+            if i>0 and i % log_interval == 0:
                 current_time = time.time()
                 log(f"{i / (current_time - t0)} records per second")
 
