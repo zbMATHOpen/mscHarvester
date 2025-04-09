@@ -11,15 +11,17 @@ arxiv = re.compile(r'https?://arxiv\.org')
 
 
 def row_filter(fields):
-    for k, v in fields.items():
-        if v is None: # Remove articles without abstract
-            return False
-        if k == "abstract" and len(v) < 10:
-            return False
-        if k=="arXiv_id" and not arxiv.search(v):
-            return False
-    fields['abstract'] = fields['abstract'].lstrip('Summary: ')
-    return True
+    if len(fields['abstract']) < 10:
+        return False
+    link = fields['arXiv_id']
+    if isinstance(link, str):
+        link = [link]
+    for v in link:
+        if arxiv.match(v):
+            fields['arXiv_id'] = v
+            fields['abstract'] = fields['abstract'].lstrip('Summary: ')
+            return True
+    return False
 
 
 run(
