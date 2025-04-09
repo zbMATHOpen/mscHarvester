@@ -40,3 +40,9 @@ The DE number is the number after the word zbMATH, i.e., 1209934.
 * [M. Petrera, I. Beckenbach, D. Ehsani, F. Müller, O. Teschke, B. Gipp, and M. Schubotz, zbMATH Open: API Solutions and Research Challenges. ArXiv, abs/2106.04664 (2021)](https://arxiv.org/abs/2106.04664)
 
 * [M. Schubotz, P. Scharpf, O. Teschke, A. Kühnemund, C. Breitinger, B. Gipp, AutoMSC: Automatic Assignment of Mathematics Subject Classification Labels, Intelligent Computer Mathematics - 13thInternational Conference, CICM 2020, Bertinoro, Italy, July 26-31, 2020, Proceedings](https://arxiv.org/pdf/2005.12099.pdf) [DOI](https://doi.org/10.1007/978-3-030-53518-6_15)
+
+
+### Installation
+```bash
+pip install -r requirements.txt
+```
