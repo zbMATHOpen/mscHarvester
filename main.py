@@ -17,9 +17,10 @@ def run(
     log_interval=1000,
     row_filter=lambda x: True,
     fieldnames=ZbPreviewRecord.fieldnames,
+    endpoint=ZbPreviewSickle.DEFAULT_ENDPOINT
 ):
     t0 = time.time()
-    s = ZbPreviewSickle()
+    s = ZbPreviewSickle(endpoint=endpoint)
     r = s.ListRecords()
     i = 0
     w: csv.DictWriter
